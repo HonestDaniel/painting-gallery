@@ -1,22 +1,23 @@
-import { FC, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import SimpleBar from 'simplebar-react';
 import cn from 'classnames/bind';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import Arrow from '../Arrow';
+import { ReactComponent as Union } from '../../images/Union.svg';
 import './SimpleBar.scss';
-import * as styles from './Select.module.scss';
+import styles from './Select.module.scss';
+import { IAuthor } from '../../models/IAuthor';
+import { ILocation } from '../../models/ILocation';
+import { useAppDispatch } from '../../state/store';
+import { setAuthorId, setLocationId } from '../../state/filterSlice';
 
 const cx = cn.bind(styles);
 
-type TOption = {
-  id: number;
-  name: string;
-};
-
-export interface ISelect {
+export interface ISelect<T extends IAuthor | ILocation> {
   /**
    * Specify an optional className to be applied to the select box
    */
+  // eslint-disable-next-line react/require-default-props
   className?: string;
   /**
    * Specify whether the control is disabled
@@ -25,7 +26,7 @@ export interface ISelect {
   /**
    * Provide the contents of your Select
    */
-  options: TOption[];
+  options: T[];
   /**
    * Current theme
    */
@@ -39,49 +40,68 @@ export interface ISelect {
    * the underlying `<input>` changes
    */
   onChange: (name: string) => void;
+
+  type: string;
 }
 
-const Select: FC<ISelect> = ({
-  className,
+function Select<T extends IAuthor | ILocation>({
+  className = '',
   disabled = false,
   options,
   isDarkTheme = false,
   value,
-  onChange
-}) => {
+  onChange,
+  type,
+}: ISelect<T>) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
   const toggleOpen = () => setIsOpen((prev) => !prev);
   useOutsideClick(ref, toggleOpen);
+
+  const dispatch = useAppDispatch();
+
+  const handleUnionClick = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+    e.stopPropagation();
+    if (type === 'author') {
+      dispatch(setAuthorId(null));
+    } else if (type === 'location') {
+      dispatch(setLocationId(null));
+    }
+  };
 
   return (
     <div
       ref={isOpen ? ref : null}
       className={cx(className, 'Select', {
         'Select--open': isOpen,
-        'Select--dark': isDarkTheme
+        'Select--dark': isDarkTheme,
       })}
-      onClick={!disabled ? toggleOpen : () => {}}
-      aria-hidden="true">
+      onClick={!disabled ? toggleOpen : () => {
+      }}
+      aria-hidden='true'>
       {!value && <span className={cx('Select__title')}>Choose an option</span>}
       <span className={cx('Select__title')}>{value}</span>
+      <Union onClick={handleUnionClick} className={cx('Union', {
+        'Union--dark': isDarkTheme,
+      })} />
       <Arrow isOpen={isOpen} className={cx('Select__arrow')} isDarkTheme={isDarkTheme} />
       {isOpen && options && (
         <ul
           className={cx('Select__optionContainer', {
             'Select__optionContainer--open': isOpen,
-            'Select__optionContainer--dark': isDarkTheme
+            'Select__optionContainer--dark': isDarkTheme,
           })}>
           <SimpleBar style={{ maxHeight: 'inherit' }}>
             {options.map((option) => (
               <li
-                onClick={() => onChange(option.name)}
+                onClick={() => onChange((option as IAuthor).name || (option as ILocation).location)}
                 className={cx('Select__option', {
-                  'Select__option--dark': isDarkTheme
+                  'Select__option--dark': isDarkTheme,
                 })}
                 key={option.id}
-                aria-hidden="true">
-                <p className={cx('Select__optionName')}>{option.name}</p>
+                aria-hidden='true'>
+                <p
+                  className={cx('Select__optionName')}>{(option as IAuthor).name || (option as ILocation).location}</p>
               </li>
             ))}
           </SimpleBar>

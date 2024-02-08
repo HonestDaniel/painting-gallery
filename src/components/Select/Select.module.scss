@@ -4,77 +4,101 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 265px;
+  border: 1px solid black;
+  width: 100%;
   height: 46px;
   border-radius: 8px;
-  box-shadow: 0px 0px 0px 1px black;
   color: black;
   box-sizing: border-box;
   background: white;
   cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+
+  &--dark {
+    border: 1px solid white;
+    color: white;
+    background: #0C0C0C;
+  }
+
   &--open {
     border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #B3B3B3;
   }
-  &--dark {
-    box-shadow: 0px 0px 0px 1px white;
-    color: white;
-    background: #464646;
-  }
+
   &__title {
-    width: 220px;
+    position: absolute;
+    width: 80%;
     word-break: break-all;
-    margin: 0 0 0 15px;
+    margin: 0 10px 0 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     line-clamp: 3;
     white-space: nowrap;
   }
+
   &__optionContainer {
     display: block;
     position: absolute;
-    width: calc(100%);
-    box-shadow: 0px 0px 0px 1px black;
+    width: calc(100% + 2px);
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-top: none;
     border-radius: 8px;
-    top: 47px;
-    padding: 0;
+    top: 45px;
+    left: -1px;
+    padding: 10px 0;
     margin: 0;
     list-style: none;
     z-index: 1;
     background: white;
+    font-size: 15px;
+    font-weight: 500;
+    overflow: hidden;
+
     &--open {
       border-radius: 0 0 8px 8px;
       max-height: 300px;
     }
+
     &--dark {
-      box-shadow: 0px 0px 0px 1px white;
-      background: #464646;
+      border: 1px solid white;
+      border-top: none;
+      background: #0C0C0C;
     }
   }
+
   &__option {
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
     width: calc(100%);
+    height: 100%;
     box-sizing: border-box;
-    padding: 0 15px;
+    padding: 10px 30px;
+
     &:hover {
       background: black;
       color: white;
     }
+
     &--dark {
       &:hover {
         background: white;
         color: black;
       }
     }
-    &:last-of-type {
-      border-radius: 0 0 8px 8px;
-    }
+
+    //&:last-of-type {
+    //  border-radius: 0 0 8px 8px;
+    //}
   }
+
   &__optionName {
     word-break: break-word;
   }
+
   &__arrow {
     position: absolute;
     display: flex;
@@ -83,3 +107,26 @@
     fill: #b3b3b3;
   }
 }
+
+.Union {
+  position: absolute;
+  display: flex;
+  right: 38px;
+  float: right;
+  fill: #B3B3B3;
+
+  &--dark {
+    fill: #b3b3b3;
+  }
+}
+
+@media (max-width: 520px) {
+  .Select {
+    width: 100%;
+  }
+
+  .Select__title {
+    width: 80%;
+  }
+}
+

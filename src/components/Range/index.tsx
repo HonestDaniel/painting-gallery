@@ -1,7 +1,7 @@
-import { FC, useRef, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import cn from 'classnames/bind';
 import Arrow from '../Arrow';
-import * as styles from './Range.module.scss';
+import styles from './Range.module.scss';
 import useOutsideClick from '../../hooks/useOutsideClick';
 
 const cx = cn.bind(styles);
@@ -10,6 +10,8 @@ export interface IRange {
   /**
    * Specify an optional className to be applied to the select box
    */
+  children: ReactNode;
+
   className?: string;
   /**
    * Current theme
@@ -21,7 +23,12 @@ export interface IRange {
   onClose: () => void;
 }
 
-const Range: FC<IRange> = ({ children, isDarkTheme, className, onClose }) => {
+function Range({
+  children,
+  isDarkTheme,
+  className,
+  onClose,
+}: IRange) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 
@@ -41,20 +48,20 @@ const Range: FC<IRange> = ({ children, isDarkTheme, className, onClose }) => {
       ref={ref}
       className={cx(className, 'Range', {
         'Range--open': isOpen,
-        'Range--dark': isDarkTheme
+        'Range--dark': isDarkTheme,
       })}
-      aria-hidden="true"
+      aria-hidden='true'
       onClick={isOpen ? hideMenu : openMenu}>
-      <span className={cx('Range__title')}>Choose values</span>
+      <span className={cx('Range__title')}>Created</span>
       <Arrow className={cx('Range__arrow')} isOpen={isOpen} isDarkTheme={isDarkTheme} />
       {isOpen && (
         <div
           className={cx('Range__сontainer', {
             'Range__сontainer--open': isOpen,
-            'Range__сontainer--dark': isDarkTheme
+            'Range__сontainer--dark': isDarkTheme,
           })}
           onClick={(e) => e.stopPropagation()}
-          aria-hidden="true">
+          aria-hidden='true'>
           {children}
         </div>
       )}

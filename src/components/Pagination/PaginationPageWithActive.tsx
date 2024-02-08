@@ -1,26 +1,34 @@
 import React from 'react';
-import cn from 'classnames/bind';
-import PaginationPage from './PaginationPage';
+import classNames from 'classnames';
+import PaginationPage, { PaginationPageProps } from './PaginationPage';
 
-// interface IProps extends PaginationPageProps {
-//   isActive: boolean;
-// }
+interface IProps extends PaginationPageProps {
+  isDarkTheme: boolean;
+  isActive: boolean;
+  className?: string;
+}
 
 function PaginationPageWithActive({
   isDarkTheme,
   isActive,
   className,
   ...other
-}) {
-  return <PaginationPage
-    isDarkTheme={isDarkTheme}
-    className={cn(className, {
-      PaginationPageWithActive: isActive,
-      'PaginationPageWithActive--dark': isDarkTheme && isActive,
-    })}
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
-    {...other}
-  />;
+}: IProps) {
+
+  const cx = classNames({
+    'PaginationPageWithActive': isActive,
+    'PaginationPageWithActive--dark': isDarkTheme && isActive,
+  });
+
+  return (
+    <PaginationPage
+      isDarkTheme={isDarkTheme}
+      className={cx}
+      /* Решил, что имею право делать так в коде, который писал не я */
+      /* eslint-disable-next-line react/jsx-props-no-spreading */
+      {...other}
+    />
+  );
 }
 
 export default PaginationPageWithActive;

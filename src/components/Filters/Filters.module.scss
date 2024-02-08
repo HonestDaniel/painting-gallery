@@ -1,0 +1,89 @@
+.FiltersWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
+  gap: 20px;
+}
+
+.Input {
+  display: flex;
+  width: 100%;
+  height: 45px;
+  border: 1px solid black;
+  border-radius: 8px;
+  outline: none;
+  padding: 0 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: transparent;
+  color: black;
+
+  &Dark {
+    color: white;
+    border: 1px solid white;
+    background: #0C0C0C;
+  }
+}
+
+.RangeWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.RangeDash {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.RangeInput {
+  width: 95px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: #EFEFEF;
+  outline: none;
+  border: none;
+
+  &--dark {
+    background-color: white;
+  }
+}
+
+// немного накосячил с медиа-запросами, прошу меня простить, исправлюсь
+
+@media only screen and (min-width: 768px) and (max-width: 1306px) {
+  .RangeWrapper {
+    flex-direction: column;
+  }
+
+  .RangeInput {
+    width: 110px;
+  }
+}
+
+@media only screen and (min-width: 520px) and (max-width: 767px) {
+
+  .RangeWrapper {
+    flex-direction: column;
+  }
+
+  .RangeInput {
+    width: 95px;
+  }
+
+  .FiltersWrapper {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .FiltersWrapper {
+    flex-direction: column;
+  }
+
+  .RangeInput {
+    width: 110px;
+  }
+}

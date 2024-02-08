@@ -1,0 +1,38 @@
+.lightTheme {
+  background-color: white;
+  color: black;
+}
+
+.darkTheme {
+  background-color: black;
+  min-height: 100vh;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 35px 123px;
+  max-width: 1336px;
+}
+
+// немного накосячил с медиа-запросами, прошу меня простить, исправлюсь
+
+@media (max-width: 1024px) {
+  .content {
+    max-width: 1024px;
+    padding: 35px 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    max-width: 768px;
+    padding: 35px 34px;
+  }
+}
+
+@media (max-width: 320px) {
+  .content {
+    max-width: 320px;
+    padding: 25px 20px;
+  }
+}

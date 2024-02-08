@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import React from 'react';
 import cn from 'classnames/bind';
 import { ReactComponent as SelectArrow } from '../../images/selectArrow.svg';
-import * as styles from './Arrow.module.scss';
+import styles from './Arrow.module.scss';
 
 export type TArrow = {
   isOpen: boolean;
@@ -11,14 +11,20 @@ export type TArrow = {
 
 const cx = cn.bind(styles);
 
-const Arrow: FC<TArrow> = ({ isOpen, isDarkTheme, className }) => (
-  <div
-    className={cx(className, {
-      Arrow__opened: isOpen,
-      Arrow__dark: isDarkTheme
-    })}>
-    <SelectArrow />
-  </div>
-);
+function Arrow({
+  isOpen,
+  isDarkTheme,
+  className,
+}: TArrow) {
+  return (
+    <div
+      className={cx(className, {
+        Arrow__opened: isOpen,
+        Arrow__dark: isDarkTheme,
+      })}>
+      <SelectArrow />
+    </div>
+  );
+}
 
 export default Arrow;
