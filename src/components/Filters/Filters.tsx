@@ -7,7 +7,7 @@ import styles from './Filters.module.scss';
 import Select from '../Select';
 import Range from '../Range';
 import { RootState, useAppDispatch } from '../../state/store';
-import { setAuthorId, setNameFilter, setRange } from '../../state/filterSlice';
+import { setAuthorId, setLocationId, setNameFilter, setRange } from '../../state/filterSlice';
 import paintingsAPI from '../../services/api';
 import { IAuthor } from '../../models/IAuthor';
 import { ILocation } from '../../models/ILocation';
@@ -73,7 +73,7 @@ function Filters() {
     setLocation(selectedOption);
     const locationToDispatch = locations.find((item: ILocation) => item.location === selectedOption);
     if (locationToDispatch) {
-      dispatch(setAuthorId(locationToDispatch));
+      dispatch(setLocationId(locationToDispatch));
     }
   };
 
