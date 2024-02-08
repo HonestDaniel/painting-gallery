@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/painting-gallery/static/css/main.9d93e0cc.css",
-    "main.js": "/painting-gallery/static/js/main.2d72e954.js",
+    "main.js": "/painting-gallery/static/js/main.c5524d5e.js",
     "static/media/Union.svg": "/painting-gallery/static/media/Union.a74c4ef0677df1a7e2fd32fe3ee6dfa3.svg",
     "index.html": "/painting-gallery/index.html",
     "static/media/doubleArrowL.svg": "/painting-gallery/static/media/doubleArrowL.356d88d77e234d1c61e46edf83e88556.svg",
@@ -10,10 +10,10 @@
     "static/media/arrowR.svg": "/painting-gallery/static/media/arrowR.15a2398ae98f5be784df280a707b6d3b.svg",
     "static/media/selectArrow.svg": "/painting-gallery/static/media/selectArrow.e857798522b0dfc8f3430ad40052fcaf.svg",
     "main.9d93e0cc.css.map": "/painting-gallery/static/css/main.9d93e0cc.css.map",
-    "main.2d72e954.js.map": "/painting-gallery/static/js/main.2d72e954.js.map"
+    "main.c5524d5e.js.map": "/painting-gallery/static/js/main.c5524d5e.js.map"
   },
   "entrypoints": [
     "static/css/main.9d93e0cc.css",
-    "static/js/main.2d72e954.js"
+    "static/js/main.c5524d5e.js"
   ]
 }
